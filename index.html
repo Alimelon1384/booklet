@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
+		<link rel="stylesheet" href="src/css/main.css" />
+		<link
+			rel="shortcut icon"
+			href="./src/img/favicon.png"
+			type="image/x-icon"
+		/>
+		<script src="src/js/controller.js" type="module" defer></script>
+		<title>Online Booklet</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="directories">
+				<div class="directories-container"></div>
+				<div class="directories-icons">
+					<figure class="btn--add-dir directories-icon">
+						<i class="fas fa-folder-plus"></i>
+					</figure>
+				</div>
+			</div>
+			<div class="notes">
+				<div class="notes-container"></div>
+				<div class="path"></div>
+			</div>
+
+			<div class="dir-window-container hidden">
+				<div class="overlay"></div>
+				<div class="dir-window">
+					<div class="window__header">
+						<span><i class="fas fa-folder-plus"></i></span>
+						<span>ایجاد دفترچه جدید</span>
+					</div>
+					<div class="window__body">
+						<span>نام دفترچه: </span>
+						<span
+							><input
+								placeholder="نمونه"
+								type="text"
+								maxlength="25"
+								required
+						/></span>
+					</div>
+					<div class="window__error"></div>
+					<div class="window__btns">
+						<button class="btn btn-ok">تائید</button>
+						<button class="btn btn-cancel">لغو</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="note-window-container hidden">
+				<div class="overlay"></div>
+				<div class="note-window">
+					<div class="window__header">
+						<span><i class="fas fa-file-medical"></i></span>
+						<span>ویرایشگر یادداشت</span>
+					</div>
+
+					<div class="window__body">
+						<form action="">
+							<div class="window__note-title">
+								<input
+									type="text"
+									placeholder="عنوان یادداشت"
+								/>
+							</div>
+
+							<div class="window__note-text">
+								<textarea
+									placeholder="محتوای یادداشت"
+									cols="30"
+									rows="10"
+								></textarea>
+							</div>
+
+							<div class="window__error"></div>
+
+							<div class="window__btns">
+								<button class="btn btn-ok">تائید</button>
+								<button class="btn btn-cancel">لغو</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

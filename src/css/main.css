@@ -1,0 +1,445 @@
+@font-face {
+	font-family: Vazir;
+	src: url("../fonts/Vazir-Regular.ttf");
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	box-sizing: border-box;
+	font: inherit;
+}
+
+::-webkit-scrollbar {
+	overflow: hidden;
+	width: 15px;
+	border-radius: 10px;
+	background-color: #999;
+}
+
+::-webkit-scrollbar-thumb {
+	overflow: hidden;
+	border-radius: 10px;
+	border: 3px solid #999;
+	background-color: rgb(255, 255, 255);
+}
+
+:root {
+	--color-bg-main: #2c3e50;
+	--color-bg-sub: #34495e;
+	--color-main: #bdc3c7;
+	--color-sub: rgb(218, 233, 255);
+	font-size: 62%;
+	line-height: 2;
+	color: #333;
+	font-family: "Vazir", "Tahoma";
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	height: 100vh;
+	background-color: white;
+}
+
+.container {
+	width: 100%;
+	background-color: rgb(230, 230, 230);
+	align-self: stretch;
+	display: flex;
+	align-items: stretch;
+	justify-content: flex-start;
+	overflow: hidden;
+	position: relative;
+}
+
+.directories {
+	user-select: none;
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
+	overflow: hidden;
+	flex: 0 0 25%;
+	background-color: var(--color-bg-sub);
+	position: relative;
+}
+
+.directories-container {
+	overflow: auto;
+	padding: 1rem 2rem;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.directories::before {
+	display: block;
+	content: "دفترچه‌ها 📚";
+	font-size: 1.5rem;
+	text-align: center;
+	padding: 1rem;
+	padding-bottom: 3rem;
+	color: var(--color-main);
+}
+
+.directories-container ul {
+	list-style: none;
+}
+
+.directories-icons {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--color-bg-sub);
+	opacity: 0.95;
+	justify-self: flex-end;
+	color: var(--color-main);
+	bottom: 0;
+	z-index: 1;
+	padding: 1rem;
+	position: absolute;
+	width: 100%;
+}
+
+.directories-icon i,
+.path__icon i {
+	display: block;
+}
+
+.directories-icon,
+.path__icon {
+	font-size: 2rem;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 100rem;
+	transition: all 0.3s;
+	background-color: #22282e96;
+}
+
+.directory__icon {
+	color: var(--color-bg-sub);
+	font-size: 2rem;
+	display: block;
+	margin: 0 1rem;
+}
+
+.directory__icon.btn--trash {
+	font-size: 1.4rem;
+	transition: all 0.2s;
+}
+
+.directory__icon.btn--trash:hover {
+	color: #fff;
+}
+
+.directories-icon:hover {
+	background-color: #001931;
+}
+
+.directory {
+	cursor: pointer;
+	border-radius: 1rem;
+	background-color: var(--color-sub);
+	display: flex;
+	align-items: center;
+	padding: 0.6rem 3rem;
+	padding-left: 1rem;
+	margin-bottom: 1rem;
+	transition: all 0.3s;
+}
+
+.directory:last-child {
+	margin-bottom: 0;
+}
+
+.directory:hover {
+	background-color: rgb(122, 177, 255);
+}
+
+.directory__title {
+	font-size: 1.6rem;
+	padding: 0 0.5rem;
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.directory.opened {
+	background-color: rgb(122, 177, 265);
+}
+
+.directory__date {
+	text-align: center;
+	font-size: 1.2rem;
+	color: #555;
+}
+
+.disable {
+	opacity: 0.3;
+	position: relative;
+}
+
+.disable::after {
+	content: "";
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	cursor: default;
+	height: 100%;
+	z-index: 1;
+}
+
+.notes {
+	flex: 1;
+	overflow: hidden;
+	background-color: var(--color-bg-main);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.notes::before {
+	display: block;
+	content: "یادداشت‌ها 📝";
+	font-size: 1.5rem;
+	text-align: center;
+	padding: 1rem;
+	color: var(--color-main);
+	width: 100%;
+}
+
+.notes-container {
+	width: 100%;
+	flex: 1;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	overflow: auto;
+}
+.notes-container::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.path {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--color-bg-sub);
+	opacity: 0.95;
+	justify-self: flex-end;
+	font-size: 1.5rem;
+	color: var(--color-main);
+	bottom: 0;
+	z-index: 1;
+	padding: 1rem;
+	position: absolute;
+	width: 100%;
+}
+
+.note {
+	user-select: none;
+	float: right;
+	background-color: var(--color-sub);
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	margin: 1.5% 1.5%;
+	height: 165px;
+	border-radius: 10px;
+	padding-bottom: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.384);
+}
+
+.note__header {
+	color: white;
+	background-color: rgb(70, 97, 141);
+	display: flex;
+	align-items: center;
+	padding: 8px 15px;
+}
+
+.note__title {
+	flex: 1;
+	font-size: 1.5rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.note__message {
+	font-size: 1.4rem;
+	color: var(--color-main);
+	padding: 1rem;
+}
+
+.note__icon {
+	opacity: 0;
+	display: block;
+	cursor: pointer;
+	font-size: 1.8rem;
+	margin: 0 5px;
+	transition: all 0.2s;
+}
+
+.note:hover .note__icon {
+	opacity: 1;
+}
+
+.note__icon:hover {
+	color: var(--color-bg-main);
+}
+
+.note__body {
+	flex: 1;
+	padding: 5px 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	font-size: 1.4rem;
+}
+
+.dir-window-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.dir-window {
+	z-index: 10;
+	background-color: var(--color-bg-sub);
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.356);
+}
+
+.window__header {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	font-size: 1.8rem;
+}
+
+.window__header i {
+	font-size: 2rem;
+	margin: 1rem;
+}
+
+.window__body,
+.window__error {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	padding: 2rem 5rem;
+}
+
+.window__error {
+	padding: 0;
+}
+
+.window__error i {
+	margin: 0 1rem;
+	color: #ff2e2e;
+}
+
+.window__body input,
+.window__body textarea {
+	border-radius: 4px;
+	outline: none;
+	border: none;
+	background-color: var(--color-sub);
+	padding: 0.2rem 1.5rem;
+	margin: 0 1rem;
+}
+
+.window__btns {
+	padding: 1rem;
+}
+
+.btn {
+	cursor: pointer;
+	margin: 0 0.5rem;
+	padding: 0.2rem 1.5rem;
+	font-size: 1.4rem;
+	border-radius: 5px;
+	border: 1px solid var(--color-bg-sub);
+}
+
+.btn-ok {
+	background-color: #4cff5bbe;
+}
+.btn-cancel {
+	background-color: rgb(255, 79, 79);
+}
+
+.overlay {
+	background-color: rgba(0, 0, 0, 0.568);
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(2px);
+	left: 0;
+	top: 0;
+}
+
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s;
+}
+
+.animate__hidden {
+	animation-name: backInDown;
+	animation-duration: 0.8s;
+}
+
+.note-window-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.note-window {
+	width: 60%;
+	z-index: 10;
+	background-color: var(--color-bg-sub);
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.356);
+}
+
+.note-window input,
+.note-window textarea {
+	width: 100%;
+}
+
+.note-window textarea {
+	resize: none;
+}
+
+.note-window form {
+	width: 100%;
+}
+
+.window__note-title,
+.window__note-text {
+	margin: 2rem 0;
+	width: 100%;
+}
