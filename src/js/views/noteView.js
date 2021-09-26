@@ -16,7 +16,7 @@ class NoteView extends View {
                 <div class="note" data-id="${note.id}">
 					<div class="note__header">
 						<h4 class="note__title">${note.title}</h4>
-						<i class="note__icon fa fa-edit btn--view"></i>
+						<i class="note__icon fa fa-edit btn--edit"></i>
 						<i class="note__icon fas fa-trash-alt btn--trash"></i>
 					</div>
 					<div class="note__body">
@@ -34,6 +34,14 @@ class NoteView extends View {
 	handleDeleteNote(handler) {
 		this.parent.addEventListener("click", (e) => {
 			if (!e.target.classList.contains("btn--trash")) return;
+			const target = e.target.closest(".note");
+			handler(target.dataset.id);
+		});
+	}
+
+	handleEditNote(handler) {
+		this.parent.addEventListener("click", (e) => {
+			if (!e.target.classList.contains("btn--edit")) return;
 			const target = e.target.closest(".note");
 			handler(target.dataset.id);
 		});

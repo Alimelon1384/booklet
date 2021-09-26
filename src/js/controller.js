@@ -22,8 +22,12 @@ const controlOpenDir = function (id) {
 	NoteView.render(model.state.currentDir);
 };
 
-const controlAddNote = function (note) {
-	model.createNote(note);
+const controlAddNote = function (note, id) {
+	console.log(id);
+	if (id) {
+		model.updateNote(id, note);
+	} else model.createNote(note);
+
 	NoteView.render(model.state.currentDir);
 };
 
@@ -38,6 +42,15 @@ const controlDeleteNote = function (id) {
 	NoteView.render(model.state.currentDir);
 };
 
+const controlEditNote = function (id) {
+	// find the note
+	const note = model.searchNote(id);
+	// open note editor window
+	NoteWindowView.toggle(id);
+	// insert data into window
+	NoteWindowView.insertData(note.title, note.text);
+};
+
 const init = function () {
 	DirectoryView.render(model.state.directories);
 	NoteView.render(model.state.currentDir);
@@ -47,5 +60,7 @@ const init = function () {
 	NoteWindowView.handleSubmit(controlAddNote);
 	DirectoryView.handleDeleteDir(controlDeleteDir);
 	NoteView.handleDeleteNote(controlDeleteNote);
+	NoteView.handleEditNote(controlEditNote);
+	DirectoryView.handleOpenCloseDirs();
 };
 init();

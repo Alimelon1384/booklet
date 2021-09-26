@@ -65,6 +65,8 @@ body {
 	flex: 0 0 25%;
 	background-color: var(--color-bg-sub);
 	position: relative;
+	transition: all 1s ease-in-out;
+	position: relative;
 }
 
 .directories-container {
@@ -442,4 +444,62 @@ body {
 .window__note-text {
 	margin: 2rem 0;
 	width: 100%;
+}
+
+.open {
+	transform: translate(-100%);
+}
+.close {
+	right: -100%;
+}
+
+.btn--open-dirs,
+.btn--close-dirs {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px 15px;
+	color: var(--color-main);
+	font-size: 2rem;
+	display: none;
+}
+
+@media screen and (max-width: 1024px) {
+	:root {
+		font-size: 45%;
+	}
+	.directories {
+		flex-basis: 30%;
+	}
+	[class="*icon"] {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	:root {
+		font-size: 45%;
+	}
+	.directories {
+		position: absolute;
+		width: 100%;
+		height: 100vh;
+		z-index: 2;
+		right: -100%;
+	}
+
+	.note {
+		width: 47%;
+		height: 150px;
+		-webkit-line-clamp: 3;
+	}
+
+	.btn--open-dirs,
+	.btn--close-dirs {
+		display: block;
+	}
+
+	.note-window {
+		width: 100%;
+	}
 }

@@ -1,4 +1,5 @@
 class NoteWindowView {
+	state = undefined;
 	window = document.querySelector(".note-window-container");
 	btnOk = this.window.querySelector(".btn-ok");
 	btnCancel = this.window.querySelector(".btn-cancel");
@@ -12,6 +13,7 @@ class NoteWindowView {
 		document.querySelector(".path").addEventListener("click", (e) => {
 			if (!e.target.closest(".btn--add-note")) return;
 			if (e.target.classList.contains("disable")) return;
+			this.state = undefined;
 			this.toggle();
 		});
 		this.overlay.addEventListener("click", this.toggle);
@@ -28,7 +30,14 @@ class NoteWindowView {
 		this.textArea.blur();
 	}
 
-	toggle = () => {
+	insertData(title, text) {
+		this.input.value = title;
+		this.textArea.value = text;
+	}
+
+	toggle = (id) => {
+		this.state = id;
+		this.clear();
 		this.errorContainer.innerHTML = "";
 		this.window
 			.querySelector(".note-window")
@@ -49,10 +58,10 @@ class NoteWindowView {
 			const note = {
 				title: this.input.value,
 				text: this.textArea.value,
+				id: this.state,
 			};
-			handler(note);
+			handler(note, this.state);
 			this.toggle();
-			this.clear();
 		});
 	}
 }

@@ -21,6 +21,10 @@ export const createDir = function (name) {
 	updateDB();
 };
 
+export const searchNote = function (id) {
+	return state.currentDir.notes.find((note) => note.id === id);
+};
+
 export const removeDir = function (id) {
 	const index = state.directories.findIndex((dir) => dir.id === id);
 	if (state.directories[index].opened) currentDir = undefined;
@@ -31,6 +35,14 @@ export const removeDir = function (id) {
 export const removeNote = function (id) {
 	const index = state.currentDir.notes.findIndex((dir) => dir.id === id);
 	state.currentDir.notes.splice(index, 1);
+	updateDB();
+};
+
+export const updateNote = function (id, newNote) {
+	const note = searchNote(id);
+	note.title = newNote.title;
+	note.text = newNote.text;
+	note.date = formateDate();
 	updateDB();
 };
 
@@ -67,7 +79,7 @@ const clearDB = function () {
 };
 
 const init = function () {
-	if (!getDB()) {
+	if (!getDB()?.length) {
 		state.directories.push({
 			id: uniqid(),
 			title: "اولین دفترچه (نمونه)",

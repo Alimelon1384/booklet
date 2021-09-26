@@ -2,6 +2,21 @@ import View from "./view";
 
 class DirectoryView extends View {
 	parent = document.querySelector(".directories-container");
+	btnOpen = document.querySelector(".btn--open-dirs");
+	btnClose = document.querySelector(".btn--close-dirs");
+
+	handleOpenCloseDirs() {
+		const dirs = document.querySelector(".directories");
+		this.btnOpen.addEventListener("click", () => {
+			dirs.classList.toggle("open");
+			dirs.classList.toggle("close");
+		});
+
+		this.btnClose.addEventListener("click", () => {
+			dirs.classList.toggle("open");
+			dirs.classList.toggle("close");
+		});
+	}
 
 	generateMarkup() {
 		return `
@@ -23,6 +38,7 @@ class DirectoryView extends View {
 				)
 				.join("")}
 		</ul>
+		
 		`;
 	}
 
@@ -30,14 +46,20 @@ class DirectoryView extends View {
 		this.parent.addEventListener("click", (e) => {
 			if (!e.target.classList.contains("btn--trash")) return;
 			const target = e.target.closest(".directory");
+
 			handler(target.dataset.id);
 		});
 	}
 
 	handleOpenDir(handler) {
+		const dirs = document.querySelector(".directories");
+
 		this.parent.addEventListener("click", (e) => {
 			const target = e.target.closest(".directory");
-			if (!target) return;
+			if (!target || e.target.classList.contains("btn--trash")) return;
+
+			dirs.classList.toggle("open");
+			dirs.classList.toggle("close");
 
 			handler(target.dataset.id);
 		});
