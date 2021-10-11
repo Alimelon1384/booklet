@@ -447,10 +447,9 @@ body {
 }
 
 .open {
-	transform: translate(-100%);
 }
+
 .close {
-	right: -100%;
 }
 
 .btn--open-dirs,
@@ -466,7 +465,7 @@ body {
 
 @media screen and (max-width: 1024px) {
 	:root {
-		font-size: 45%;
+		font-size: 52%;
 	}
 	.directories {
 		flex-basis: 30%;
@@ -476,10 +475,15 @@ body {
 	}
 }
 
-@media screen and (max-width: 480px) {
-	:root {
-		font-size: 45%;
+@media screen and (max-width: 650px) {
+	.open {
+		transform: translate(-100%);
 	}
+
+	.close {
+		right: -100%;
+	}
+
 	.directories {
 		position: absolute;
 		width: 100%;

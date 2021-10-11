@@ -6,7 +6,9 @@ class PathView extends View {
 	generateMarkup() {
 		return `
 		<div class="path__icons">
-			<figure class="path__icon btn--add-note ${this.state ? "" : "disable"}">
+			<figure class="path__icon btn--add-note ${
+				this.state ? "" : "disable"
+			}" title="ایجاد یادداشت">
 				<i class="fas fa-file-medical"></i>
 			</figure>
 		</div>
