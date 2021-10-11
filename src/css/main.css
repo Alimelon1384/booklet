@@ -506,4 +506,8 @@ body {
 	.note-window {
 		width: 100%;
 	}
+
+	.path {
+		font-size: 1.2rem;
+	}
 }
