@@ -3,10 +3,10 @@ import DirectoryView from "./views/directoryView";
 import NoteView from "./views/noteView";
 import PathView from "./views/pathView";
 import DirWindowView from "./views/dirWindowView";
-import NoteWindowView from "./views/noteWindowView";\
+import NoteWindowView from "./views/noteWindowView";
 
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 const controlAddDir = function (dir) {
 	model.createDir(dir);
